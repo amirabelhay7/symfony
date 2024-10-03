@@ -1,0 +1,73 @@
+<h1>Liste des auteurs</h1>
+
+<style>
+    table {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        font-size: 1em;
+        text-align: left;
+        background-color: #fafafa;
+    }
+    th, td {
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+    th {
+        background-color: #444;
+        color: #fff;
+    }
+    img {
+        width: 120px;
+        height: 120px;
+        border-radius: 10%;
+    }
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    .summary {
+        margin: 20px;
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
+
+{% if authors is not defined or authors is empty %}
+    <h1>Aucun auteur disponible</h1>
+{% else %}
+    <table>
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Image</th>
+                <th>Détails</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for author in authors %}
+            <tr>
+                <td>{{ author.username }}</td>
+                <td><img src="{{ asset(author.picture) }}" alt="Image de {{ author.username }}"></td>
+                <td><a href="{{ path('app_details', {'id': author.id}) }}">Voir détails</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="summary">
+        <p>Nombre d'auteurs : {{ authors | length }}</p>
+
+        {% set total_livres = authors | map(attribute='nb_books') | sum %}
+        <p>Nombre total de livres : {{ total_livres }}</p>
+    </div>
+
+    <div class="summary">
+        <p>Code source disponible sur <a href="https://github.com/amirabelhay7/Synfony" target="_blank">GitHub</a>.</p>
+        <p>Projet disponible sur <a href="https://drive.google.com/drive/folder-id" target="_blank">Google Drive</a>.</p>
+    </div>
+{% endif %}

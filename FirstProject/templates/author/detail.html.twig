@@ -1,0 +1,47 @@
+<h1>Informations sur l'auteur</h1>
+
+<style>
+    body {
+        background-color: #FFFAF0; 
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+    .author-container {
+        margin: 20px auto;
+        padding: 20px;
+        width: 80%;
+        max-width: 500px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .author-image {
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+    }
+    .author-details p {
+        font-size: 1.1em;
+        color: #333;
+    }
+    .email {
+        color: #007bff;
+    }
+    .links a {
+        color: #007bff;
+        text-decoration: none;
+    }
+</style>
+
+<div class="author-container">
+    <h2>{{ author.username }}</h2>
+    <img class="author-image" src="{{ asset(author.picture) }}" alt="Photo de {{ author.username }}">
+    <div class="author-details">
+        <p>Email : <span class="email">{{ author.email }}</span></p>
+        <p>Nombre de livres : {{ author.nb_books }}</p>
+    </div>
+    <div class="links">
+        <p>Code source sur <a href="https://github.com/amirabelhay7/Synfony" target="_blank">GitHub</a>.</p>
+        <p>Projet sur <a href="https://drive.google.com/drive/folder-id" target="_blank">Google Drive</a>.</p>
+    </div>
+</div>
