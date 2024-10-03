@@ -1,0 +1,50 @@
+Affichage des variables: {{name}}
+Affichage d'un index d'un tableau: {{T[i]}}
+Affichage d'un attribut d'un objet: {{user.id}}
+Déclaration d'une variable dans twig: {% set pi=3.14 %}
+Structure conditionnelle: {% if a>0 %}
+                             <h1> Bonjour {/h1}
+                          {% else %}
+                             <h1> Bonne Nuit {/h1}
+                          {% endif %}
+Structure itérative: {% for user in users %}
+                          <h1> Bonjour {/h1}
+                     {% endfor %}
+Path('app-home') interne
+url('https://esprit.blackboard.com/ultra/courses/_6663_1/outline') externe
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1>La liste des auteurs </h1>
+{% if authors is not defined or authors is empty %}
+<h1> Aucun Auteur est disponible </h1>
+{% else %}
+<table border="2">
+<tr>
+<th> Le nom de l'auteur </th>
+<th> Image </th>
+</tr>
+<tr {% for author in authors %}>
+<td> {{author.username|upper}} </td>
+<td> <img src="{{asset(author.picture)}}"> </td>
+<td> <a href='#'>  détails </td>
+</tr {% endfor %}>
+</table>
+{% endif %}
+<h1>Le nombre des auteurs est {{authors|length}}</h1>
+{% set total_livre=0 %}
+{% for author in authors %}
+{% set total_livre = total_livre + author.nb_books %}
+{% endfor %}
+<h1>Le nombre total des livre est {{total_livre}}</h1>
